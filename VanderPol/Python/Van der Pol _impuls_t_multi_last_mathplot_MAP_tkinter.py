@@ -17,7 +17,7 @@ n1 = 26
 
 # Параметры холста
 canvas_width = 30
-canvas_height = 3
+canvas_height = 30
 
 # Функции системы
 def F(y):
