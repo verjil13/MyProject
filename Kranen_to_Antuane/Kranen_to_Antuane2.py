@@ -46,7 +46,7 @@ initial_guess = [7, 800, 150]
 try:
     popt, pcov = curve_fit(antoine_log, T_range, logP_data, p0=initial_guess, maxfev=maxfev)
     A_fit, B_fit, C_fit = popt
-    print(f"Коэффициенты Антуана:\nA = {A_fit:.5f}, B = {B_fit:.5f}, C = {C_fit:.5f}")
+    print(f"Коэффициенты Антуана:\nA = {A_fit:.5f}, B = {B_fit:.5f}, C = {C_fit:.2f}")
 
     # Построение графиков
     plt.figure(figsize=(10, 6))
