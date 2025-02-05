@@ -1,4 +1,3 @@
-
 from PIL import Image
 import numpy as np
 from numba import cuda, float64
@@ -7,11 +6,11 @@ import time
 # Параметры системы
 delta = 0.01
 maxregim = 13  # максимально разрешимый режим
-Ntrans = 3000
+Ntrans = 5000
 
 # Разрешение изображения
-image_width = 5000
-image_height = 5000
+image_width = 1000
+image_height = 1000
 
 # Функция для карты режима Хенона
 @cuda.jit(device=True)
@@ -21,8 +20,8 @@ def Henon(x, alpha, beta):
     return dx0, dx1
 
 # Параметры сетки
-a_min, a_max = 0, 2
-b_min, b_max = -0.5, 0.5
+a_min, a_max = 0, 2 # 0, 2
+b_min, b_max = -0.5, 0.5# -0.5, 0.5
 a_n = np.linspace(a_min, a_max, image_height)
 b_n = np.linspace(b_min, b_max, image_width)
 
@@ -77,7 +76,7 @@ def generate_Henon_map():
     
     map_Henon = map_Henon_gpu.copy_to_host()
     map_Henon_2d = map_Henon.reshape((len(a_n), len(b_n)))
-    map_Henon_2d = np.flipud(np.fliplr(map_Henon_2d))  # Исправленное отражение
+    map_Henon_2d = np.flipud(map_Henon_2d)  # Переворот изображения
     
     output_file = f"map_Henon_gpu_{image_width}.png"
     save_image(map_Henon_2d, output_file)
