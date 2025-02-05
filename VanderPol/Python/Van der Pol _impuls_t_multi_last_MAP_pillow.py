@@ -16,8 +16,8 @@ n = 3000
 n1 = 26
 
 # Параметры изображения
-img_width = 50
-img_height = 50
+img_width = 30
+img_height = 30
 
 
 def F(y):
